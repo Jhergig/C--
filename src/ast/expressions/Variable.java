@@ -2,10 +2,12 @@
  * @generated VGen (for ANTLR) 1.7.1
  */
 
-package ast;
+package ast.expressions;
 
 import org.antlr.v4.runtime.*;
 
+import ast.AbstractExpression;
+import ast.VarDefinition;
 import visitor.*;
 
 //	variable:expression -> name:String
@@ -14,6 +16,7 @@ public class Variable extends AbstractExpression {
 
     public Variable(String name) {
         this.name = name;
+        setModificable(true);
     }
 
     public Variable(Object name) {

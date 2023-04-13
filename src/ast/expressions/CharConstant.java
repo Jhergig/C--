@@ -2,21 +2,22 @@
  * @generated VGen (for ANTLR) 1.7.2
  */
 
-package ast;
+package ast.expressions;
 
 import org.antlr.v4.runtime.*;
 
+import ast.AbstractExpression;
 import visitor.*;
 
-//	intConstant:expression -> value:String
+//	charConstant:expression -> value:String
 
-public class IntConstant extends AbstractExpression {
+public class CharConstant extends AbstractExpression {
 
-	public IntConstant(String value) {
+	public CharConstant(String value) {
 		this.value = value;
 	}
 
-	public IntConstant(Object value) {
+	public CharConstant(Object value) {
 		this.value = (value instanceof Token) ? ((Token)value).getText() : (String) value;
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.

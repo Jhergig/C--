@@ -2,10 +2,11 @@
  * @generated VGen (for ANTLR) 1.7.2
  */
 
-package ast;
+package ast.expressions;
 
 import org.antlr.v4.runtime.*;
 
+import ast.AbstractExpression;
 import visitor.*;
 
 //	floatConstant:expression -> value:String

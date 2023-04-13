@@ -44,6 +44,21 @@ public class StructDefinition extends AbstractDefinition {
 	public void setStructfield(List<StructField> structfield) {
 		this.structfield = structfield;
 	}
+	public boolean hasField(String name) {
+		for (StructField field : structfield) {
+			if (field.getName().equals(name))
+				return true;
+		}
+		return false;
+	}
+	
+	public Type fieldType(String name) {
+		for (StructField field : structfield) {
+			if (field.getName().equals(name))
+				return field.getType();
+		}
+		return null;
+	}
 
 	@Override
 	public Object accept(Visitor v, Object param) { 

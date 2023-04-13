@@ -2,17 +2,17 @@
  * @generated VGen (for ANTLR) 1.7.2
  */
 
-package ast;
+package ast.sentences;
 
-import org.antlr.v4.runtime.*;
+import ast.AbstractSentence;
+import ast.Expression;
+import visitor.Visitor;
 
-import visitor.*;
+//	return:sentence -> expression:expression
 
-//	printsp:sentence -> expression:expression
+public class Return extends AbstractSentence {
 
-public class Printsp extends AbstractSentence {
-
-	public Printsp(Expression expression) {
+	public Return(Expression expression) {
 		this.expression = expression;
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
@@ -20,12 +20,15 @@ public class Printsp extends AbstractSentence {
        setPositions(expression);
 	}
 
-	public Printsp(Object expression) {
+	public Return(Object expression) {
 		this.expression = (Expression) getAST(expression);
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
        setPositions(expression);
+	}
+
+	public Return() {
 	}
 
 	public Expression getExpression() {

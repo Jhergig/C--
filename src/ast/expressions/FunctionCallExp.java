@@ -2,18 +2,21 @@
  * @generated VGen (for ANTLR) 1.7.2
  */
 
-package ast;
+package ast.expressions;
 
 import java.util.*;
 import org.antlr.v4.runtime.*;
 
+import ast.AbstractExpression;
+import ast.Expression;
+import ast.FunctionDefinition;
 import visitor.*;
 
-//	functionCallSen:sentence -> name:String  parameters:expression*
+//	functionCallExp:expression -> name:String  parameters:expression*
 
-public class FunctionCallSen extends AbstractSentence {
+public class FunctionCallExp extends AbstractExpression {
 
-	public FunctionCallSen(String name, List<Expression> parameters) {
+	public FunctionCallExp(String name, List<Expression> parameters) {
 		this.name = name;
 		this.parameters = parameters;
 
@@ -22,7 +25,7 @@ public class FunctionCallSen extends AbstractSentence {
        setPositions(parameters);
 	}
 
-	public FunctionCallSen(Object name, Object parameters) {
+	public FunctionCallExp(Object name, Object parameters) {
 		this.name = (name instanceof Token) ? ((Token)name).getText() : (String) name;
 		this.parameters = this.<Expression>getAstFromContexts(parameters);
 

@@ -2,18 +2,21 @@
  * @generated VGen (for ANTLR) 1.7.2
  */
 
-package ast;
+package ast.expressions;
 
 import org.antlr.v4.runtime.*;
 
+import ast.AbstractExpression;
+import ast.Expression;
 import visitor.*;
 
-//	assignment:sentence -> left:expression  right:expression
+//	arithmeticExpression:expression -> left:expression  operator:String  right:expression
 
-public class Assignment extends AbstractSentence {
+public class ArithmeticExpression extends AbstractExpression {
 
-	public Assignment(Expression left, Expression right) {
+	public ArithmeticExpression(Expression left, String operator, Expression right) {
 		this.left = left;
+		this.operator = operator;
 		this.right = right;
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
@@ -21,13 +24,14 @@ public class Assignment extends AbstractSentence {
        setPositions(left, right);
 	}
 
-	public Assignment(Object left, Object right) {
+	public ArithmeticExpression(Object left, Object operator, Object right) {
 		this.left = (Expression) getAST(left);
+		this.operator = (operator instanceof Token) ? ((Token)operator).getText() : (String) operator;
 		this.right = (Expression) getAST(right);
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
-       setPositions(left, right);
+       setPositions(left, operator, right);
 	}
 
 	public Expression getLeft() {
@@ -35,6 +39,13 @@ public class Assignment extends AbstractSentence {
 	}
 	public void setLeft(Expression left) {
 		this.left = left;
+	}
+
+	public String getOperator() {
+		return operator;
+	}
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
 
 	public Expression getRight() {
@@ -50,9 +61,10 @@ public class Assignment extends AbstractSentence {
 	}
 
 	private Expression left;
+	private String operator;
 	private Expression right;
 
 	public String toString() {
-       return "{left:" + getLeft() + ", right:" + getRight() + "}";
+       return "{left:" + getLeft() + ", operator:" + getOperator() + ", right:" + getRight() + "}";
    }
 }

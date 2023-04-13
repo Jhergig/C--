@@ -9,15 +9,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ast.AST;
-import ast.FunctionCallExp;
-import ast.FunctionCallSen;
 import ast.FunctionDefinition;
+import ast.Parameter;
 import ast.Position;
 import ast.StructDefinition;
 import ast.StructField;
 import ast.StructType;
 import ast.VarDefinition;
-import ast.Variable;
+import ast.expressions.FunctionCallExp;
+import ast.expressions.Variable;
+import ast.sentences.FunctionCallSen;
 import main.ErrorManager;
 import visitor.DefaultVisitor;
 
@@ -45,11 +46,20 @@ public class Identification extends DefaultVisitor {
         return null;
     }
     
+    public Object visit(Parameter node, Object param) {
+    	VarDefinition parametro = variables.getFromTop(node.getName());
+    	predicado(parametro == null, "Parámetro ya definido: " + node.getName(), node);
+    	variables.put(node.getName(), new VarDefinition(node.getType(), node.getName()));
+		return null;
+    }
+    
     public Object visit(FunctionDefinition node, Object param) {
-    	super.visit(node, param);
     	FunctionDefinition definicion = functions.get(node.getName());
     	predicado(definicion == null, "Función ya definida: " + node.getName(), node);
     	functions.put(node.getName(), node);
+    	variables.set();
+    	super.visit(node, param);
+    	variables.reset();
     	return null;
     }
     

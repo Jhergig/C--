@@ -51,7 +51,7 @@ param returns[Parameter ast]
 	;
 
 sentence returns[Sentence ast]
-	: 'read' expr ';' 
+	: 'read' expr ';' 																	{ $ast = new Read($expr.ast); }
 	| 'print' expr? ';' 																{ $ast = new Print($expr.ast); }
 	| 'printsp' expr? ';' 																{ $ast = new Printsp($expr.ast); }
 	| 'println' expr? ';' 																{ $ast = new Println($expr.ast); }
@@ -73,7 +73,7 @@ expr returns[Expression ast]
 	| INT_CONSTANT											{ $ast = new IntConstant($INT_CONSTANT); }
 	| FLOAT_CONSTANT										{ $ast = new FloatConstant($FLOAT_CONSTANT); }
 	| CHAR_CONSTANT											{ $ast = new CharConstant($CHAR_CONSTANT); }
-	| '<' type '>' '(' expr ')' 						{ $ast = new Cast($type.ast, $expr.ast);}
+	| '<' type '>' '(' expr ')' 							{ $ast = new Cast($type.ast, $expr.ast);}
 	| IDENT '(' paramss ')'									{ $ast = new FunctionCallExp($IDENT, $paramss.list);}
 	| e=expr '.' IDENT  									{ $ast = new Dot($e.ast, $IDENT); }
  

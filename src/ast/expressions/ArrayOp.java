@@ -2,11 +2,11 @@
  * @generated VGen (for ANTLR) 1.7.2
  */
 
-package ast;
+package ast.expressions;
 
-import org.antlr.v4.runtime.*;
-
-import visitor.*;
+import ast.AbstractExpression;
+import ast.Expression;
+import visitor.Visitor;
 
 //	arrayOp:expression -> name:expression  pos:expression
 

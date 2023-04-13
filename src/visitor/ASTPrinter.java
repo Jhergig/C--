@@ -7,6 +7,25 @@ package visitor;
 import java.io.*;
 
 import ast.*;
+import ast.expressions.ArithmeticExpression;
+import ast.expressions.ArrayOp;
+import ast.expressions.Cast;
+import ast.expressions.CharConstant;
+import ast.expressions.Dot;
+import ast.expressions.FloatConstant;
+import ast.expressions.FunctionCallExp;
+import ast.expressions.IntConstant;
+import ast.expressions.Variable;
+import ast.sentences.Assignment;
+import ast.sentences.FunctionCallSen;
+import ast.sentences.If;
+import ast.sentences.Print;
+import ast.sentences.Println;
+import ast.sentences.Printsp;
+import ast.sentences.Read;
+import ast.sentences.Return;
+import ast.sentences.While;
+
 import java.util.*;
 
 /**
@@ -430,7 +449,6 @@ public class ASTPrinter extends DefaultVisitor {
 		write(indent, attName + "  " + typeTag(type) + " = ");
 		if (children != null)
 			for (AST child : children)
-				if (child != null)
 				child.accept(this, indent + 1);
 		else
 			writer.print(" " + valueTag(null));

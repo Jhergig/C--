@@ -2,12 +2,14 @@
  * @generated VGen (for ANTLR) 1.7.2
  */
 
-package ast;
+package ast.sentences;
 
-import java.util.*;
-import org.antlr.v4.runtime.*;
+import java.util.List;
 
-import visitor.*;
+import ast.AbstractSentence;
+import ast.Expression;
+import ast.Sentence;
+import visitor.Visitor;
 
 //	if:sentence -> expression:expression  truee:sentence*  falsee:sentence*
 

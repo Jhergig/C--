@@ -4,12 +4,11 @@
 
 package ast;
 
-import java.util.*;
-import org.antlr.v4.runtime.*;
+import java.util.List;
 
-import parser.GrammarParser.SentenceContext;
-import parser.GrammarParser.VariableContext;
-import visitor.*;
+import org.antlr.v4.runtime.Token;
+
+import visitor.Visitor;
 
 //	functionDefinition:definition -> name:String  parameter:parameter*  type:type  vardefinition:varDefinition*  sentence:sentence*
 

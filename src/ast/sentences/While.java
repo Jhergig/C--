@@ -2,39 +2,35 @@
  * @generated VGen (for ANTLR) 1.7.2
  */
 
-package ast;
+package ast.sentences;
 
-import org.antlr.v4.runtime.*;
+import java.util.List;
 
-import visitor.*;
+import ast.AbstractSentence;
+import ast.Expression;
+import ast.Sentence;
+import visitor.Visitor;
 
-//	cast:expression -> type:type  expression:expression
+//	while:sentence -> expression:expression  doo:sentence*
 
-public class Cast extends AbstractExpression {
+public class While extends AbstractSentence {
 
-	public Cast(Type type, Expression expression) {
-		this.type = type;
+	public While(Expression expression, List<Sentence> doo) {
 		this.expression = expression;
+		this.doo = doo;
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
-       setPositions(type, expression);
+       setPositions(expression, doo);
 	}
 
-	public Cast(Object type, Object expression) {
-		this.type = (Type) getAST(type);
+	public While(Object expression, Object doo) {
 		this.expression = (Expression) getAST(expression);
+		this.doo = this.<Sentence>getAstFromContexts(doo);
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
-       setPositions(type, expression);
-	}
-
-	public Type getType() {
-		return type;
-	}
-	public void setType(Type type) {
-		this.type = type;
+       setPositions(expression, doo);
 	}
 
 	public Expression getExpression() {
@@ -44,15 +40,22 @@ public class Cast extends AbstractExpression {
 		this.expression = expression;
 	}
 
+	public List<Sentence> getDoo() {
+		return doo;
+	}
+	public void setDoo(List<Sentence> doo) {
+		this.doo = doo;
+	}
+
 	@Override
 	public Object accept(Visitor v, Object param) { 
 		return v.visit(this, param);
 	}
 
-	private Type type;
 	private Expression expression;
+	private List<Sentence> doo;
 
 	public String toString() {
-       return "{type:" + getType() + ", expression:" + getExpression() + "}";
+       return "{expression:" + getExpression() + ", doo:" + getDoo() + "}";
    }
 }

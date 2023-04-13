@@ -2,32 +2,30 @@
  * @generated VGen (for ANTLR) 1.7.2
  */
 
-package ast;
+package ast.sentences;
 
-import org.antlr.v4.runtime.*;
+import ast.AbstractSentence;
+import ast.Expression;
+import visitor.Visitor;
 
-import visitor.*;
+//	print:sentence -> expression:expression
 
-//	dot:expression -> expression:expression  name:String
+public class Print extends AbstractSentence {
 
-public class Dot extends AbstractExpression {
-
-	public Dot(Expression expression, String name) {
+	public Print(Expression expression) {
 		this.expression = expression;
-		this.name = name;
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
        setPositions(expression);
 	}
 
-	public Dot(Object expression, Object name) {
+	public Print(Object expression) {
 		this.expression = (Expression) getAST(expression);
-		this.name = (name instanceof Token) ? ((Token)name).getText() : (String) name;
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
-       setPositions(expression, name);
+       setPositions(expression);
 	}
 
 	public Expression getExpression() {
@@ -37,22 +35,14 @@ public class Dot extends AbstractExpression {
 		this.expression = expression;
 	}
 
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	@Override
 	public Object accept(Visitor v, Object param) { 
 		return v.visit(this, param);
 	}
 
 	private Expression expression;
-	private String name;
 
 	public String toString() {
-       return "{expression:" + getExpression() + ", name:" + getName() + "}";
+       return "{expression:" + getExpression() + "}";
    }
 }

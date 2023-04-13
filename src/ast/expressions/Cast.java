@@ -2,30 +2,40 @@
  * @generated VGen (for ANTLR) 1.7.2
  */
 
-package ast;
+package ast.expressions;
 
-import org.antlr.v4.runtime.*;
+import ast.AbstractExpression;
+import ast.Expression;
+import ast.Type;
+import visitor.Visitor;
 
-import visitor.*;
+//	cast:expression -> type:type  expression:expression
 
-//	read:sentence -> expression:expression
+public class Cast extends AbstractExpression {
 
-public class Read extends AbstractSentence {
-
-	public Read(Expression expression) {
+	public Cast(Type type, Expression expression) {
+		this.typee = type;
 		this.expression = expression;
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
-       setPositions(expression);
+       setPositions(type, expression);
 	}
 
-	public Read(Object expression) {
+	public Cast(Object type, Object expression) {
+		this.typee = (Type) getAST(type);
 		this.expression = (Expression) getAST(expression);
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
-       setPositions(expression);
+       setPositions(type, expression);
+	}
+
+	public Type getTypee() {
+		return typee;
+	}
+	public void setTypee(Type typee) {
+		this.typee = typee;
 	}
 
 	public Expression getExpression() {
@@ -40,9 +50,10 @@ public class Read extends AbstractSentence {
 		return v.visit(this, param);
 	}
 
+	private Type typee;
 	private Expression expression;
 
 	public String toString() {
-       return "{expression:" + getExpression() + "}";
+       return "{type:" + getType() + ", expression:" + getExpression() + "}";
    }
 }
