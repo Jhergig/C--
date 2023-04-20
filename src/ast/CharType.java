@@ -15,8 +15,21 @@ public class CharType extends AbstractType {
 		return v.visit(this, param);
 	}
 
-
+    public int getSize() {
+        return 2;
+    }
+    
 	public String toString() {
        return "{CharType}";
    }
+
+	@Override
+	public char getSuffix() {
+		return 'c';
+	}
+
+	@Override
+	public String getMAPLName() {
+		return "char";
+	}
 }

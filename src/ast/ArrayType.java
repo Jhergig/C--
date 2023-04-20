@@ -55,4 +55,14 @@ public class ArrayType extends AbstractType {
 	public String toString() {
        return "{type:" + getType() + ", size:" + getSize() + "}";
    }
+
+	@Override
+	public char getSuffix() {
+		return 0;
+	}
+
+	@Override
+	public String getMAPLName() {
+		return null;
+	}
 }

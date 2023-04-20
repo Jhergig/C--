@@ -16,23 +16,24 @@ public class VarDefinition extends AbstractDefinition {
 		this.type = type;
 		this.name = name;
 
-       // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
-       // Obtiene la linea/columna a partir de las de los hijos.
-       setPositions(type);
+		// Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
+		// Obtiene la linea/columna a partir de las de los hijos.
+		setPositions(type);
 	}
 
 	public VarDefinition(Object type, Object name) {
 		this.type = (Type) getAST(type);
-		this.name = (name instanceof Token) ? ((Token)name).getText() : (String) name;
+		this.name = (name instanceof Token) ? ((Token) name).getText() : (String) name;
 
-       // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
-       // Obtiene la linea/columna a partir de las de los hijos.
-       setPositions(type, name);
+		// Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
+		// Obtiene la linea/columna a partir de las de los hijos.
+		setPositions(type, name);
 	}
 
 	public Type getType() {
 		return type;
 	}
+
 	public void setType(Type type) {
 		this.type = type;
 	}
@@ -40,12 +41,13 @@ public class VarDefinition extends AbstractDefinition {
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public Object accept(Visitor v, Object param) { 
+	public Object accept(Visitor v, Object param) {
 		return v.visit(this, param);
 	}
 
@@ -53,6 +55,16 @@ public class VarDefinition extends AbstractDefinition {
 	private String name;
 
 	public String toString() {
-       return "{type:" + getType() + ", name:" + getName() + "}";
-   }
+		return "{type:" + getType() + ", name:" + getName() + "}";
+	}
+
+	private int address;
+
+	public int getAddress() {
+		return address;
+	}
+
+	public void setAddress(int address) {
+		this.address = address;
+	}
 }

@@ -51,4 +51,19 @@ public class StructType extends AbstractType {
     }
 
     private StructDefinition definition;
+
+	@Override
+	public int getSize() {
+		return 0;
+	}
+
+	@Override
+	public char getSuffix() {
+		return 0;
+	}
+
+	@Override
+	public String getMAPLName() {
+		return null;
+	}
 }
