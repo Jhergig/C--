@@ -5,10 +5,15 @@
 
 package codegeneration;
 
-import java.io.*;
+import java.io.PrintWriter;
+import java.io.Writer;
 
-import ast.*;
-import visitor.*;
+import ast.AST;
+import ast.Position;
+import ast.Program;
+import ast.Type;
+import ast.sentences.Assignment;
+import visitor.DefaultVisitor;
 
 enum CodeFunction {
 	ADDRESS, VALUE
@@ -28,6 +33,13 @@ public class CodeSelection extends DefaultVisitor {
 	
 	 super.visit(node, param); // Recorrer los hijos
 	 return null;
+	 }
+	 
+	 public Object visit(Assignment node, Object param) {
+		 node.getLeft().accept(this, CodeFunction.ADDRESS);
+		 node.getRight().accept(this, CodeFunction.VALUE);
+		 out("store", node.getLeft().getType());
+		 return null;
 	 }
 
 	// # ----------------------------------------------------------
